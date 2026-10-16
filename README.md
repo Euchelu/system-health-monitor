@@ -1,6 +1,6 @@
 # System Health Monitor
 
-Dashboard React en tiempo real que visualiza métricas de sistema (CPU, RAM, disco) consumiendo la [DevOps Toolkit API](https://github.com/Euchelu/devops-toolkit-).
+Dashboard React en tiempo real que visualiza métricas de sistema (CPU, RAM, disco) consumiendo la [DevOps Toolkit API](https://github.com/Euchelu/devops-toolkit).
 
 ## Stack
 

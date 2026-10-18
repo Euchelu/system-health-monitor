@@ -47,10 +47,26 @@ export function useMetrics() {
   }, [push])
 
   useEffect(() => {
-    fetchReal()
-    intervalRef.current = setInterval(fetchReal, POLL_MS)
+    const stop = () => {
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current)
+        intervalRef.current = null
+      }
+    }
+    const start = () => {
+      stop()
+      fetchReal()
+      intervalRef.current = setInterval(fetchReal, POLL_MS)
+    }
+    // Pausa el polling con la pestaña en segundo plano para no gastar
+    // peticiones, y lo reanuda con una lectura inmediata al volver.
+    const onVisibilityChange = () => (document.hidden ? stop() : start())
+
+    if (!document.hidden) start()
+    document.addEventListener('visibilitychange', onVisibilityChange)
     return () => {
-      if (intervalRef.current) clearInterval(intervalRef.current)
+      document.removeEventListener('visibilitychange', onVisibilityChange)
+      stop()
     }
   }, [fetchReal])
 

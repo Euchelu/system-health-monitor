@@ -40,4 +40,4 @@ El proxy de Vite redirige `/api/*` → `http://localhost:8001/*` automáticament
 
 ## CI/CD
 
-GitHub Actions: build → deploy a GitHub Pages.
+GitHub Actions ejecuta lint, tests (Vitest) y build en cada push y pull request, y despliega en GitHub Pages al hacer push a `main`.
